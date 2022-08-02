@@ -1,24 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import { Row, Col, Container } from "react-bootstrap";
+import AllUsers from "./components/AllUsers";
+import AddUserForm from "./components/AddUserForm";
+import "bootstrap/dist/css/bootstrap.min.css";
+// import "react-bootstrap/dist/react-bootstrap";
 
 function App() {
+  const [users, setUsers] = useState([
+    { name: "Obinim", contact: 203755275, location: "Taadi" },
+    { name: "Abanga", contact: 214567663, location: "Bongo" },
+  ]);
+  const addNewUser = (user) => {
+    setUsers([...users, user]);
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container style={{ marginTop: "30px" }}>
+      <Row>
+        <Col>
+          <AddUserForm newUser={addNewUser} />
+        </Col>
+        <Col>
+          <AllUsers userData={users} />
+        </Col>
+      </Row>
+    </Container>
   );
 }
 
