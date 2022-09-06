@@ -6,10 +6,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 // import "react-bootstrap/dist/react-bootstrap";
 
 function App() {
-  const [users, setUsers] = useState([
-    { name: "Obinim", contact: 203755275, location: "Taadi", id: 1 },
-    { name: "Abanga", contact: 214567663, location: "Bongo", id: 2 },
-  ]);
+  const [users, setUsers] = useState([]);
   const addNewUser = (user) => {
     user.id = Math.random();
     setUsers([...users, user]);
