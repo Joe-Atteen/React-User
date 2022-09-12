@@ -4,6 +4,8 @@ let initialState = {
   users: [
     { name: "Obinim", contact: 203755275, location: "Taadi", id: uuidv4() },
     { name: "Abanga", contact: 214567663, location: "Bongo", id: uuidv4() },
+    { name: "Abanga", contact: 214567663, location: "Bongo", id: uuidv4() },
+    { name: "Abanga", contact: 214567663, location: "Bongo", id: uuidv4() },
   ],
 };
 

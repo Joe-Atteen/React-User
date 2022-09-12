@@ -1,14 +1,19 @@
 import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
+import { v4 as uuidv4 } from "uuid";
+import { AddNewUser } from "../action/UserAction";
+import { useDispatch, connect } from "react-redux";
 
 function AddUserForm(props) {
   const [name, setName] = useState("");
   const [contact, setContact] = useState("");
   const [location, setLocation] = useState("");
+  const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    props.newUser({ name, contact, location });
+    let userInfo = { name, contact, location, id: uuidv4() };
+    dispatch(AddNewUser(userInfo));
     setName("");
     setContact("");
     setLocation("");
@@ -59,5 +64,6 @@ function AddUserForm(props) {
     </div>
   );
 }
+const mapDispatch = { AddNewUser: AddNewUser };
 
-export default AddUserForm;
+export default connect(null, mapDispatch)(AddUserForm);
