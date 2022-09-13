@@ -3,15 +3,19 @@ import React from "react";
 import { useState } from "react";
 import { Card, Col, Button, Modal } from "react-bootstrap";
 import EditUserForm from "./EditUserForm";
+import { useDispatch } from "react-redux";
+import { DeleteUser } from "../action/UserAction";
 
 function User({ handleDelete, userInfo, editUser }) {
   const [show, setShow] = useState(false);
   const handleShow = () => setShow(true);
   const handleClose = () => setShow(false);
+  const dispatch = useDispatch();
 
   const deleteUser = () => {
-    handleDelete(userInfo.id);
-    delete userInfo.id;
+    // handleDelete(userInfo.id);
+    // delete userInfo.id;
+    dispatch(DeleteUser(userInfo.id));
   };
 
   return (
@@ -21,7 +25,11 @@ function User({ handleDelete, userInfo, editUser }) {
           <Modal.Title>Edit User</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <EditUserForm userInfo={userInfo} editUser={editUser} />
+          <EditUserForm
+            close={handleClose}
+            userInfo={userInfo}
+            editUser={editUser}
+          />
         </Modal.Body>
       </Modal>
       <Col md={2} style={{ width: "15rem", marginBottom: "10px" }}>
@@ -45,4 +53,7 @@ function User({ handleDelete, userInfo, editUser }) {
   );
 }
 
+// const mapDispatch = { DeleteUser };
+
+// export default connect(null, mapDispatch)(User);
 export default User;

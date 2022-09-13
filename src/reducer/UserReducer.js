@@ -16,6 +16,22 @@ let UserReducer = (state = initialState, action) => {
         ...state,
         users: [...state.users, action.payload],
       };
+    case "DELETE_USER":
+      const filteredUsers = state.users.filter(
+        (user) => user.id !== action.payload
+      );
+      return {
+        ...state,
+        users: filteredUsers,
+      };
+    case "USER_EDIT":
+      const userEdit = state.users.map((user) =>
+        user.id === action.payload.data.id ? action.payload.data : user
+      );
+      return {
+        ...state,
+        users: userEdit,
+      };
     default:
       return state;
   }

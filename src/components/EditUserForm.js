@@ -1,19 +1,24 @@
 import { Form, Button } from "react-bootstrap";
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { UserEdit } from "../action/UserAction";
 
 const EditUserForm = (props) => {
   const [name, setName] = useState(props.userInfo.name);
   const [contact, setContact] = useState(props.userInfo.contact);
   const [location, setLocation] = useState(props.userInfo.location);
   const [id, setId] = useState(props.userInfo.id);
+  const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    props.editUser(id, { name, contact, location });
+    // props.editUser(id, { name, contact, location });
     setName("");
     setContact("");
     setLocation("");
     setId("");
+    props.close();
+    dispatch(UserEdit({ id, name, contact, location }));
   };
 
   return (
