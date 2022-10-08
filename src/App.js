@@ -1,37 +1,39 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import { Row, Col, Container } from "react-bootstrap";
 import AllUsers from "./components/AllUsers";
 import AddUserForm from "./components/AddUserForm";
 import "bootstrap/dist/css/bootstrap.min.css";
-// import "react-bootstrap/dist/react-bootstrap";
+import { collection, query, onSnapshot, orderBy } from "firebase/firestore";
+import { db } from "./firebase/Config";
+import { useDispatch } from "react-redux";
+import { AddNewUser } from "./action/UserAction";
 
 function App() {
-  const [users, setUsers] = useState([]);
-  const addNewUser = (user) => {
-    user.id = Math.random();
-    setUsers([...users, user]);
-  };
+  const dispatch = useDispatch();
 
-  const handleDelete = (id) => {
-    setUsers(users.filter((user) => user.id !== id));
-  };
-
-  const editUser = (id, updatedUser) => {
-    setUsers(users.map((user) => (user.id === id ? updatedUser : user)));
-  };
+  useEffect(() => {
+    const retrieveData = async () => {
+      const q = query(collection(db, "users"), orderBy("timestamp", "asc"));
+      const subscribe = onSnapshot(q, (querySnapshot) => {
+        const usersArr = [];
+        querySnapshot.forEach((doc) => {
+          usersArr.push(doc.data());
+        });
+        dispatch(AddNewUser(usersArr));
+        console.log(usersArr);
+      });
+    };
+    retrieveData();
+  }, []);
 
   return (
     <Container style={{ marginTop: "30px" }}>
       <Row>
         <Col>
-          <AddUserForm newUser={addNewUser} />
+          <AddUserForm />
         </Col>
         <Col>
-          <AllUsers
-            userData={users}
-            handleDelete={handleDelete}
-            editUser={editUser}
-          />
+          <AllUsers />
         </Col>
       </Row>
     </Container>
