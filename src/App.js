@@ -9,6 +9,7 @@ import Routers from "./Routers";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { app } from "./firebase/Config";
 import { dispatchUser } from "./action/AuthAction";
+import Home from "./register/Home";
 
 function App() {
   const dispatch = useDispatch();
