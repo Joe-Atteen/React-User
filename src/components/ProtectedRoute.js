@@ -7,7 +7,7 @@ function ProtectedRoute({ children }) {
   });
 
   if (!users) {
-    return <Navigate to="/signin" />;
+    return <Navigate to="/" />;
   }
   return children;
 }

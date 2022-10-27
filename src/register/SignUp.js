@@ -13,7 +13,7 @@ function SignUp() {
   const SignUp = (e) => {
     e.preventDefault();
     try {
-      navigate("/home");
+      navigate("/");
     } catch (e) {
       console.log(e);
     }
