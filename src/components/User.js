@@ -6,7 +6,7 @@ import EditUserForm from "./EditUserForm";
 import { doc, deleteDoc } from "firebase/firestore";
 import { db } from "../firebase/Config";
 
-function User({ handleDelete, userInfo, editUser }) {
+function User({ userInfo, editUser }) {
   const [show, setShow] = useState(false);
   const handleShow = () => setShow(true);
   const handleClose = () => setShow(false);

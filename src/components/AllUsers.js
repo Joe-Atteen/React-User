@@ -3,21 +3,16 @@ import { Row, Container } from "react-bootstrap";
 import User from "./User";
 import { useSelector } from "react-redux";
 
-function AllUsers({ userData, handleDelete, editUser }) {
-  const { users } = useSelector((store) => store);
+function AllUsers() {
+  const users = useSelector((state) => {
+    return state.UserReducer.users;
+  });
 
   return (
     <Container>
       <Row>
         {users.map((user, index) => {
-          return (
-            <User
-              key={index}
-              userInfo={user}
-              handleDelete={handleDelete}
-              editUser={editUser}
-            />
-          );
+          return <User key={index} userInfo={user} />;
         })}
       </Row>
     </Container>
