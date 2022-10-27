@@ -7,11 +7,13 @@ import { doc, setDoc, serverTimestamp } from "firebase/firestore";
 import { db } from "../firebase/Config";
 import { app } from "../firebase/Config";
 import { getAuth, signOut } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 
 function AddUserForm() {
   const [name, setName] = useState("");
   const [contact, setContact] = useState("");
   const [location, setLocation] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -39,6 +41,7 @@ function AddUserForm() {
   const logout = () => {
     try {
       signOut(auth);
+      navigate("/");
     } catch (e) {
       console.log(e);
     }
