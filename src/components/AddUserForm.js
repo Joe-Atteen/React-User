@@ -5,6 +5,8 @@ import { AddNewUser } from "../action/UserAction";
 import { connect } from "react-redux";
 import { doc, setDoc, serverTimestamp } from "firebase/firestore";
 import { db } from "../firebase/Config";
+import { app } from "../firebase/Config";
+import { getAuth, signOut } from "firebase/auth";
 
 function AddUserForm() {
   const [name, setName] = useState("");
@@ -30,6 +32,16 @@ function AddUserForm() {
     setName("");
     setContact("");
     setLocation("");
+  };
+
+  let auth = getAuth(app);
+
+  const logout = () => {
+    try {
+      signOut(auth);
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   return (
@@ -73,6 +85,9 @@ function AddUserForm() {
         <Button onClick={handleSubmit} classvariant="primary" type="submit">
           Submit
         </Button>
+        <button type="submit" className="logout" onClick={logout}>
+          Logout
+        </button>
       </Form>
     </div>
   );

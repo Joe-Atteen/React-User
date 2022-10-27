@@ -112,9 +112,15 @@
 
 .logout {
   background: #93a3a7;
-  margin: 20px 0 0 0;
   width: 85px;
   height: 40px;
   border: none;
   border-radius: 5px;
+  margin-left: 20px;
+}
+
+@media screen and (max-width: 500px) {
+  .input {
+    width: 90%;
+  }
 }

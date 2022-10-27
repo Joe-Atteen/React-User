@@ -3,20 +3,8 @@ import { Row, Col, Container } from "react-bootstrap";
 import AllUsers from "../components/AllUsers";
 import AddUserForm from "../components/AddUserForm";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { app } from "../firebase/Config";
-import { getAuth, signOut } from "firebase/auth";
 
 function Home() {
-  let auth = getAuth(app);
-
-  const logout = () => {
-    try {
-      signOut(auth);
-    } catch (e) {
-      console.log(e);
-    }
-  };
-
   return (
     <div>
       <Container style={{ marginTop: "30px" }}>
@@ -28,9 +16,6 @@ function Home() {
             <AllUsers />
           </Col>
         </Row>
-        <button type="submit" className="logout" onClick={logout}>
-          Logout
-        </button>
       </Container>
     </div>
   );

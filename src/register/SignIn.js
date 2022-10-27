@@ -38,7 +38,7 @@ function SignIn() {
         const user = userCredential.user;
         console.log(user);
         alert("Succesfully signed in!");
-        navigate("/", { replace: true });
+        navigate("/home", { replace: true });
       })
       .catch(() => {
         setError(true);
@@ -55,7 +55,7 @@ function SignIn() {
         const user = userCredential.user;
         console.log(user);
         alert("Succesfully signed in!");
-        navigate("/", { replace: true });
+        navigate("/home", { replace: true });
       })
       .catch(() => {
         setError(true);
